@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class ClientsideGameManager : MonoBehaviour
+{
+    public static ClientsideGameManager Instance {  get; private set; }
+
+    public static Camera _mainCamera;
+
+    // ADS state for sensitivity modification
+    public static bool isADS = false;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError($"More than one instance of {Instance} in scene");
+        }
+
+        Instance = this;
+    }
+
+    public void RegisterMainCamera(Camera camera)
+    {
+        _mainCamera = camera;
+        Debug.Log("new maincamera registered");
+    }
+
+    // the distance at which to stop rendering environmental hit effects
+    public static float maxVFXDistance = 38f;
+
+}
